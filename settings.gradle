@@ -1,2 +1,4 @@
-include ':app'
+include ':geoquiz'
+include ':geoquiz-mvc'
+
 rootProject.name = "Android Practice"
