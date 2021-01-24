@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">geoquiz-mvc</string>
+    <string name="app_name">GeoQuiz MVC</string>
+    <string name="question_text">Text TextView</string>
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="correct_toast">Correct!</string>
+    <string name="incorrect_toast">Incorrect!</string>
+    <string name="kotlin_title">Kotlin is best choice for Android development?</string>
 </resources>
