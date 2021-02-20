@@ -28,34 +28,39 @@ class MainActivity : AppCompatActivity() {
 
         questionTextView = findViewById(R.id.question_text_view)
 
-        val questionTextResId = questionBank[currentIndex].textResId
-        questionTextView.setText(questionTextResId)
+        updateQuestion()
 
         trueButton = findViewById(R.id.true_btn)
-        trueButton.setOnClickListener() {
-            Toast.makeText(
-                    this,
-                    R.string.correct_toast,
-                    Toast.LENGTH_SHORT
-            ).show()
+        trueButton.setOnClickListener {
+            checkAnswer(true)
         }
 
         falseButton = findViewById(R.id.false_btn)
-        falseButton.setOnClickListener() {
-
-            val toast: Toast = Toast.makeText(
-                    applicationContext,
-                    R.string.incorrect_toast,
-                    Toast.LENGTH_SHORT)
-            toast.setGravity(Gravity.TOP, 0, 0)
-            toast.show()
+        falseButton.setOnClickListener {
+            checkAnswer(false)
         }
 
         nextButton = findViewById(R.id.next_btn)
-        nextButton.setOnClickListener() {
+        nextButton.setOnClickListener {
             currentIndex = (currentIndex + 1) % questionBank.size
-            val questionTextResId = questionBank[currentIndex].textResId
-            questionTextView.setText(questionTextResId)
+            updateQuestion()
         }
+    }
+
+    private fun updateQuestion() {
+        val questionTextResId = questionBank[currentIndex].textResId
+        questionTextView.setText(questionTextResId)
+    }
+
+    private fun checkAnswer(userAnswer: Boolean) {
+        val correctAnswer = questionBank[currentIndex].answer
+
+        val messageResId = if (userAnswer == correctAnswer) {
+            R.string.correct_toast
+        } else {
+            R.string.incorrect_toast
+        }
+
+        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
     }
 }
